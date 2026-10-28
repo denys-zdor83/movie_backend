@@ -14,14 +14,14 @@ datasource db {
 // uuid - is a standard of ids that is used in APIs and database tables
 // it will generate a unique ID for the user
 model User {
-  id             String          @id @default(uuid())
-  name           String
-  email          String          @unique
-  password       String
-  createdAt      DateTime        @default(now())
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
 
   // Relations
-  movies Movie[] @relation("MovieCreator")
+  movies         Movie[]         @relation("MovieCreator")
   watchlistItems WatchlistItem[]
 }
 
@@ -36,7 +36,7 @@ model Movie {
   createdBy   String
   createdAt   DateTime @default(now())
 
-  creator User @relation("MovieCreator", fields: [createdBy], references: [id], onDelete: Cascade)
+  creator        User            @relation("MovieCreator", fields: [createdBy], references: [id], onDelete: Cascade)
   watchlistItems WatchlistItem[]
 }
 
@@ -51,7 +51,7 @@ model WatchlistItem {
   updatedAt DateTime        @default(now())
 
   // Relations
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
   movie Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
 }
 
