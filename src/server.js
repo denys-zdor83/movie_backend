@@ -12,7 +12,7 @@ connectDB();
 const app = express();
 
 // Body parsing middlewares
-app.use(express.json);
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // API Routes. Here we apply our routes. Do it for each individual route

@@ -1,10 +1,13 @@
-import { PrismaClient } from "@prisma/client/extension";
+import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 
 // It will help with type completion and recongnition with the name of columns and tables
 // we will have it besause of Prisma Client
-
 const prisma = new PrismaClient({
   // Here we are adding a small configuration
+  adapter,
   log: process.env.NODE_ENV === "development" 
     ? ["query", "error", "warn"] 
     : ["error"]
