@@ -1,8 +1,11 @@
+import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 
 // The reason why we are creating a new instance of PrismaClient
 // is that this file won't be a part of our API
-const prisma = new PrismaClient();
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const prisma = new PrismaClient({ adapter });
 
 // ID of the person who is creating this data
 const creatorID = process.env.SEED_CREATOR_ID;
