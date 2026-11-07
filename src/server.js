@@ -4,7 +4,8 @@ import { connectDB, disconnectDB } from "./config/db.js";
 
 // Import routes
 import movieRoutes from "./routes/movieRoutes.js";
-import authRoutes from "./routes/authRoutes.js"
+import authRoutes from "./routes/authRoutes.js";
+import watchlistRoutes from "./routes/watchlistRoutes.js";
 
 connectDB();
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 // API Routes. Here we apply our routes. Do it for each individual route
 app.use("/movies", movieRoutes);
 app.use("/auth", authRoutes);
+app.use("/watchlist", watchlistRoutes);
 
 const PORT = 5001;
 
