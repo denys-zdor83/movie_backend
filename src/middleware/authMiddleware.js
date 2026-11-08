@@ -17,8 +17,8 @@ export const authMiddleware = async (req, res, next) => {
 
   if (!token) {
     return res
-            .status(401)
-            .json({ error: "Not authorized, no token provided" })
+      .status(401)
+      .json({ error: "Not authorized, no token provided" })
   }
 
   try {
@@ -31,8 +31,8 @@ export const authMiddleware = async (req, res, next) => {
 
     if (!user) {
       return res
-              .status(401)
-              .json({ error: "User no longer exists" })
+        .status(401)
+        .json({ error: "User no longer exists" })
     }
 
     req.user = user;
@@ -40,7 +40,7 @@ export const authMiddleware = async (req, res, next) => {
     next();
   } catch (err) {
     return res
-            .status(401)
-            .json({ error: "Not authorized, token failed" })
+      .status(401)
+      .json({ error: "Not authorized, token failed" })
   }
 }
